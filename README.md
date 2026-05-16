@@ -1,4 +1,4 @@
-# 🧮 Cardculator
+# 🧮 CalcPuter
 
 A feature-rich calculator firmware for the **M5Stack Cardputer**, built in C++. Supports expression evaluation, built-in math formulas, fraction input, and a help screen — all designed for the Cardputer's tiny keyboard and display.
 
