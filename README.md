@@ -106,7 +106,10 @@ pio run --target upload
 ## 📁 Project Structure
 
 ```
-├── main.cpp          # Full firmware source
+├── src/
+|   ├── main.cpp
+|   ├── tinyexpr.c
+|   ├── tinyexpr.h
 ├── photos/
 │   ├── generalmenu.jpg
 │   ├── formulas.jpg
