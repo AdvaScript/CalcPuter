@@ -1,0 +1,8 @@
+{
+  "name": "CalcPuter for Cardputer ADV",
+  "description": "Calculator with formulas, sqrt, sin, tan, fraction, pi, cos and in",
+  "version": "1.6.0",
+  "author": "AdvaScriptCC",
+  "repository": "https://github.com/you/repo",
+  "framework": "arduino"
+}
