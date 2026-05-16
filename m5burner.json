@@ -1,8 +1,12 @@
 {
   "name": "CalcPuter for Cardputer ADV",
-  "description": "Calculator with formulas, sqrt, sin, tan, fraction, pi, cos and in",
-  "version": "1.6.0",
+  "version": "1.0.0",
   "author": "AdvaScriptCC",
-  "repository": "https://github.com/you/repo",
-  "framework": "arduino"
+  "board": "Cardputer",
+  "chip": "ESP32-S3",
+  "files": {
+    "firmware": "firmware/firmware.bin",
+    "partitions": "partitions.bin"
+  },
+  "description": "Calculator with formulas, sqrt, sin, tan, fraction, pi, cos and in"
 }
