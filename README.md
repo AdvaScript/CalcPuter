@@ -53,15 +53,17 @@ Enter a numerator and denominator separately — the result is inserted directly
 | `Fn + T` | Insert `tan(` |
 | `Fn + L` | Insert `ln(` |
 | `Fn + P` | Insert `pi` |
-| `Fn + C` | Clear expression |
+| `Fn + D` | Toggle DEG / RAD mode |
+| `Fn + C` | Clear expression / Cancel |
 | `Fn + ^` | Insert `^` (exponent) |
-| `Enter` | Evaluate expression |
-| `Del` | Backspace |
+| `Fn + ; / .` | Up / Down navigation in Formula menu |
+| `Enter` | Evaluate expression / Next step |
+| `Del` | Backspace / Undo step / Back |
 
 ### 🧮 Supported Math Functions
-`sin`, `cos`, `tan`, `asin`, `acos`, `atan`, `sinh`, `cosh`, `tanh`, `sqrt`, `ln`, `log` (base 10), `abs`, `floor`, `ceil`, `round`, `exp`
+`sin`, `cos`, `tan`, `asin`, `acos`, `atan`, `sinh`, `cosh`, `tanh`, `sqrt`, `cbrt`, `ln`, `log` (base 10), `abs`, `floor`, `ceil`, `round`, `exp`, `fac` (factorial), `ncr`, `npr`
 
-Constants: `pi`, `PI`
+Constants: `pi`, `PI`, `e`, `E`
 
 ---
 
@@ -75,9 +77,14 @@ Constants: `pi`, `PI`
 ```ini
 [env:m5stack-cardputer]
 platform = espressif32
-board = m5stack-cardputer
+board = m5stack-stamps3
 framework = arduino
-lib_deps = m5stack/M5Cardputer
+build_flags = 
+    -DARDUINO_USB_CDC_ON_BOOT=1
+    -DARDUINO_USB_MODE=1
+    -DTE_POW_FROM_RIGHT
+lib_deps = 
+    m5stack/M5Cardputer@^1.1.1
 ```
 
 ```bash
