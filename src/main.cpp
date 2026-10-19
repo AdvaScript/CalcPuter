@@ -5,7 +5,7 @@
 #include <algorithm>
 #include "tinyexpr.h"
 
-#define VERSION   "1.7"
+#define VERSION   "1.7.1"
 
 #define SCR_W     240
 #define SCR_H     135
@@ -637,24 +637,39 @@ static void handleFormulaVarsKey(Keyboard_Class::KeysState& s) {
 
 // --- Arduino Lifecycle ---
 
+static bool canvasReady = false;
+
 void setup() {
+    delay(100); // Allow power rails to stabilize
+
     auto cfg = M5.config();
+    cfg.internal_spk = false; // Disable speaker to save DMA RAM & avoid ES8311 codec delay
+    cfg.internal_mic = false; // Disable microphone
+    cfg.internal_imu = false; // Disable IMU
     M5Cardputer.begin(cfg, true);
     M5Cardputer.Display.setRotation(1);
 
-    canvas.createSprite(SCR_W, SCR_H);
-    canvas.setTextDatum(TL_DATUM);
-
-    canvas.fillScreen(TFT_BLACK);
-    canvas.setTextColor(TFT_CYAN);
-    canvas.setTextSize(2);
-    canvas.setCursor(20, 35);
-    canvas.print("CalcPuter v" VERSION);
-    canvas.setTextSize(1);
-    canvas.setTextColor(TFT_WHITE);
-    canvas.setCursor(20, 65);
-    canvas.print("Fast, Precise & Flicker-Free");
-    canvas.pushSprite(0, 0);
+    canvasReady = (canvas.createSprite(SCR_W, SCR_H) != nullptr);
+    if (canvasReady) {
+        canvas.setTextDatum(TL_DATUM);
+        canvas.fillScreen(TFT_BLACK);
+        canvas.setTextColor(TFT_CYAN);
+        canvas.setTextSize(2);
+        canvas.setCursor(20, 35);
+        canvas.print("CalcPuter v" VERSION);
+        canvas.setTextSize(1);
+        canvas.setTextColor(TFT_WHITE);
+        canvas.setCursor(20, 65);
+        canvas.print("Fast, Precise & Flicker-Free");
+        canvas.pushSprite(0, 0);
+    } else {
+        M5Cardputer.Display.setTextDatum(TL_DATUM);
+        M5Cardputer.Display.fillScreen(TFT_BLACK);
+        M5Cardputer.Display.setTextColor(TFT_CYAN);
+        M5Cardputer.Display.setTextSize(2);
+        M5Cardputer.Display.setCursor(20, 35);
+        M5Cardputer.Display.print("CalcPuter v" VERSION);
+    }
 
     delay(800);
     drawCalc();

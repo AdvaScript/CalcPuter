@@ -126,6 +126,20 @@ pio run --target upload
 
 ---
 
+## 📝 Changelog
+
+### v1.7.1
+- **Cardputer & Cardputer ADV Compatibility**: Fixed boot failure on actual hardware by disabling unused audio peripherals (ES8311 codec / microphone) to free DMA RAM and prevent I2C bus hangs on boot.
+- **Bootloader & Partition Integrity**: Merged binary now properly bundles `boot_app0.bin` at offset `0xe000` to ensure ESP32-S3 OTA bootloader boots reliably on virgin devices and in M5Burner.
+- **Math Engine (TinyExpr)**: Replaced buggy custom parser with robust TinyExpr engine. Correct operator precedence, right-associative power (`^`), correct unary minus in expressions like `2^-3` and `-2^2`.
+- **Implicit Multiplication**: Automatically parses `2pi`, `2(3+4)`, `)2`, and fraction insertions seamlessly.
+- **Angle Modes**: Added toggle between **DEG** (Degrees) and **RAD** (Radians) via `Fn + D`, with visual status indicator.
+- **Flicker-Free Rendering**: Implemented double-buffering using `M5Canvas` with safe fallback to direct drawing.
+- **Domain Validation**: Proper math error reporting for out-of-range functions (`asin`, `acos`, `tan(90)`) instead of silent NaNs or overflow.
+- **UI & UX Improvements**: Fixed Help screen state machine lockup, added undo/back navigation in formula inputs, and added interactive cursor.
+
+---
+
 ## 📜 License
 
 MIT License — do whatever you want, attribution appreciated.
